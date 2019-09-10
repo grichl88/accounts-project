@@ -16,8 +16,14 @@ import { Observable } from 'rxjs';
     providers: [HttpClient, AccountsService, ContactsService]
 })
 export class HomeComponent implements OnInit {
+    page = 1;
     title = 'Your Accounts';
     accounts: Account[];
+    totalItems = 0;
+    pageSize = 5;
+    pagedItems: Account[];
+    previousPage: any;
+    currentPage: number = 1;
     loading = true;
     activeIds: string[] = [];
     edit = false;
@@ -30,9 +36,19 @@ export class HomeComponent implements OnInit {
                     return account.Contacts = contacts;
                 });
             });
+            this.totalItems = accounts.length;
             this.accounts = accounts;
+            this.pagedItems = this.accounts.slice(this.currentPage - 1, this.pageSize);
             this.loading = false;
         });
+    }
+    loadPage(page: number){
+        if (page === 1) {
+            this.currentPage = page;
+            this.pagedItems = this.accounts.slice(this.currentPage - 1, this.pageSize);
+        } else {
+            this.pagedItems = this.accounts.slice(page * this.pageSize - 5, this.pageSize * page);
+        }
     }
     editAccount(){
         this.edit = true;

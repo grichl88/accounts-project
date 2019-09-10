@@ -7,9 +7,15 @@
     ...Loading
 </div>
 
+<ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="totalItems"
+        (pageChange)="loadPage($event)">
+</ngb-pagination>
 <!-- Accordion of Accounts -->
 <ngb-accordion *ngIf="!loading" activeIds="panel-0">
-    <ngb-panel *ngFor="let account of accounts; let i = index" id="panel-{{i}}">
+    <ngb-panel *ngFor="let account of pagedItems; let i = index" id="panel-{{i}}">
         <ng-template ngbPanelTitle>
             <span *ngIf="account.Name">Account Name: {{ account.Name }}</span>
             <span *ngIf="!account.Name">Account Name: N/A</span><br/>

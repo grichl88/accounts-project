@@ -1,10 +1,7 @@
 {
   "name": "accounts_project",
   "nativescript": {
-    "id": "org.nativescript.projectname",
-    "tns-android": {
-      "version": "6.1.0"
-    }
+    "id": "org.nativescript.projectname"
   },
   "version": "0.0.0",
   "scripts": {
@@ -16,12 +13,9 @@
     "e2e": "ng e2e",
     "android": "tns run android --bundle",
     "ios": "tns run ios --bundle",
-    "mock:server": "json-server --id Id --watch mocks/accounts.json",
-    "mock:hotel:server": "json-server --id _Id  --watch mocks/data.json -p %PORT%",
+    "mock:server": "json-server --watch mocks/data.json",
     "start:proxy": "ng serve --proxy-config proxy.conf.json",
-    "start:https:proxy": "ng serve --proxy-config proxy.https.conf.json",
-    "start:proxy:https:mock:server": "concurrently — kill-others \"npm run mock:server\" \"npm run start:proxy\"",
-    "start:proxy:mock:server": "concurrently — kill-others \"npm run mock:server\" \"npm run start\""
+    "start:proxy:mock:server": "concurrently — kill-others \"npm run mock:server\" \"npm run start:proxy\""
   },
   "private": true,
   "dependencies": {
@@ -37,7 +31,6 @@
     "ajv": "^6.9.1",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
-    "hotel": "^0.8.7",
     "jquery": "^3.4.1",
     "nativescript-angular": "8.2.1",
     "nativescript-theme-core": "^1.0.6",
@@ -64,10 +57,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nativescript-dev-typescript": "~0.7.0",
     "nativescript-dev-webpack": "^1.2.0",
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "3.4.5"
+    "typescript": "~3.5.3"
   }
 }

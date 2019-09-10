@@ -6,7 +6,7 @@
     "defaultCollection": "@nativescript/schematics"
   },
   "projects": {
-    "project-name": {
+    "accounts_project": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -16,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/project-name",
+            "outputPath": "dist/accounts_project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,7 +26,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -53,18 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "project-name:build"
+            "browserTarget": "accounts_project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "project-name:build:production"
+              "browserTarget": "accounts_project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "project-name:build"
+            "browserTarget": "accounts_project:build"
           }
         },
         "test": {
@@ -75,7 +75,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -98,7 +98,7 @@
         }
       }
     },
-    "project-name-e2e": {
+    "accounts_project-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -106,7 +106,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "project-name:serve"
+            "devServerTarget": "accounts_project:serve"
           },
           "configurations": {
             "production": {
@@ -126,5 +126,10 @@
       }
     }
   },
-  "defaultProject": "project-name"
+  "defaultProject": "project-name",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

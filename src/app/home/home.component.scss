@@ -1,0 +1,14 @@
+app-home {
+  > .card-header {
+    background-color: white;
+  }
+}
+
+ngb-accordion.accordion {
+  [id^="panel-"].card-header {
+    button.btn {
+      width: 100%;
+      text-align: left;
+    }
+  }
+}

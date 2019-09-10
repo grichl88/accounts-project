@@ -1,5 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <ActionBar [title]="title"></ActionBar>
-<StackLayout  class="p-20">
-    <Label text="Welcome to {{ title }}!" class="h1 text-center" textWrap="true"></Label>
-</StackLayout>
+
+<GridLayout rows="auto, *" backgroundColor="#fff">
+    <GridLayout row="0" height="60">
+        <Label verticalAlignment="center" horizontalAlignment="center"
+               fontSize="18" fontWeight="bold" color="#000" text="Welcome to {{ title }}!"></Label>
+    </GridLayout>
+    <StackLayout margin="10" row="1">
+        <ListView class="list-group"  height="100%" [items]="accounts">
+            <ListView.itemTemplates>
+            <ng-template let-account="item" let-i="index">
+                <Label text="{{ account.Name }}" class="title"></Label>
+            </ng-template>
+            </ListView.itemTemplates>
+        </ListView>
+    </StackLayout>
+</GridLayout>

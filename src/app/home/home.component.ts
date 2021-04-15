@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
         });
     }
     loadPage(page: number) {
+        this.toggleAll('collapseAll');
         if (page === 1) {
             this.currentPage = page;
             this.pagedItems = this.accounts.slice(this.currentPage - 1, this.pageSize);
@@ -81,11 +82,13 @@ export class HomeComponent implements OnInit {
         this.modalService.close(id);
     }
 
-    toggleAll() {
+    toggleAll(action) {
       const idsToToggle = [];
-      this.openedAll = !this.openedAll;
-
-      this.toggledText = this.openedAll ? 'Close All': 'Open All';
+      if (action === 'collapseAll') {
+        this.toggledText = 'Open All';
+        this.activeIds = [];
+        return;
+      }
       this.accounts.forEach((account, index) => {
         const isFound = false;
         if (this.activeIds.length > 0) {
@@ -100,5 +103,7 @@ export class HomeComponent implements OnInit {
         }
       });
       this.activeIds = idsToToggle;
+      this.openedAll = !this.openedAll;
+      this.toggledText = this.openedAll ? 'Close All': 'Open All';
     }
 }

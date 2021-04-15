@@ -24,9 +24,11 @@ export class HomeComponent implements OnInit {
     pagedItems: Account[];
     previousPage: any;
     currentPage: number = 1;
-    loading = true;
+    loading: boolean = true;
     activeIds: string[] = [];
-    edit = false;
+    edit: boolean = false;
+    openedAll: boolean = false;
+    toggledText: string = 'Open All';
     constructor( private accountService: AccountsService, private contactService: ContactsService, private modalService: ModalService ) { }
 
     ngOnInit() {
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
             this.loading = false;
         });
     }
-    loadPage(page: number){
+    loadPage(page: number) {
         if (page === 1) {
             this.currentPage = page;
             this.pagedItems = this.accounts.slice(this.currentPage - 1, this.pageSize);
@@ -50,16 +52,16 @@ export class HomeComponent implements OnInit {
             this.pagedItems = this.accounts.slice(page * this.pageSize - 5, this.pageSize * page);
         }
     }
-    editAccount(){
+    editAccount() {
         this.edit = true;
     }
-    closeEdit(){
+    closeEdit() {
         this.accountService.getAll().subscribe(data => {
             this.accounts = data;
         });
         this.edit = false;
     }
-    submit(account){
+    submit(account) {
         this.edit = false;
         this.accountService.save(account).subscribe( () => {
             this.accountService.getAll().subscribe((accounts: Account[]) => {
@@ -77,5 +79,26 @@ export class HomeComponent implements OnInit {
     }
     closeModal(id: string) {
         this.modalService.close(id);
+    }
+
+    toggleAll() {
+      const idsToToggle = [];
+      this.openedAll = !this.openedAll;
+
+      this.toggledText = this.openedAll ? 'Close All': 'Open All';
+      this.accounts.forEach((account, index) => {
+        const isFound = false;
+        if (this.activeIds.length > 0) {
+          this.activeIds.findIndex((panelId) => {
+            if (`panel-${index}` === panelId) {
+              isFound = true;
+            }
+          });
+        }
+        if (!isFound) {
+          idsToToggle.push(`panel-${index}`);
+        }
+      });
+      this.activeIds = idsToToggle;
     }
 }

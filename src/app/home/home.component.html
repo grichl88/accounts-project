@@ -7,14 +7,18 @@
     ...Loading
 </div>
 
-<ngb-pagination
-        [(page)]="page"
-        [pageSize]="pageSize"
-        [collectionSize]="totalItems"
-        (pageChange)="loadPage($event)">
-</ngb-pagination>
+<div class="row">
+  <div class="col-12">
+    <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="totalItems"
+            (pageChange)="loadPage($event)">
+    </ngb-pagination>
+  </div>
+</div>
 <!-- Accordion of Accounts -->
-<ngb-accordion *ngIf="!loading" activeIds="panel-0">
+<ngb-accordion *ngIf="!loading" activeIds="panel-0" [activeIds]="activeIds">
     <ngb-panel *ngFor="let account of pagedItems; let i = index" id="panel-{{i}}">
         <ng-template ngbPanelTitle>
             <span *ngIf="account.Name">Account Name: {{ account.Name }}</span>
@@ -82,7 +86,7 @@
                 </div>
                 <div class="row no-gutters">
                     <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-                        <button (click)="openModal('custom-modal-' + i)" class="mb-2">View Contacts</button>
+                        <button (click)="openModal('custom-modal-' + i)" class="mb-2">View Contacts</button> <br>
                         <button (click)="editAccount('account-' + i)">Edit Account</button>
                     </div>
                 </div>
@@ -127,8 +131,8 @@
                 </div>
                 <div class="row no-gutters">
                     <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-                        <button (click)="openModal('custom-modal-' + i)" class="mb-2">View Contacts</button>
-                        <button (click)="submit(account)" class="mb-2">Submit Edits</button>
+                        <button (click)="openModal('custom-modal-' + i)" class="mb-2">View Contacts</button> <br>
+                        <button (click)="submit(account)" class="mb-2">Submit Edits</button> <br>
                         <button (click)="closeEdit('editaccount-' + i)">Close Edit</button>
                     </div>
                 </div>
@@ -196,3 +200,17 @@
         </jw-modal>
     </ngb-panel>
 </ngb-accordion>
+
+<div class="row">
+  <div class="col-6">
+    <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="totalItems"
+            (pageChange)="loadPage($event)">
+    </ngb-pagination>
+  </div>
+  <div class="col-6 text-right">
+    <button (click)="toggleAll()">{{toggledText}}</button>
+  </div>
+</div>

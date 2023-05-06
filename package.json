@@ -38,7 +38,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "hotel": "^0.8.7",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "nativescript-angular": "8.2.1",
     "nativescript-theme-core": "^1.0.6",
     "reflect-metadata": "~0.1.8",
